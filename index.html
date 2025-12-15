@@ -1363,7 +1363,7 @@
                             
                         </div>
                         <h3>Handmade/Crochet Yarn Business</h3>
-                        <p>Pearl’s Yarniverse is a visually focused website that showcases a handmade crochet and yarn brand. It highlights unique, handcrafted yarn creations and crochet pieces, presenting them in a clean and creative layout that reflects the brand’s artistic identity. The website serves as a digital portfolio and brand space, allowing visitors to explore the products, appreciate the craftsmanship, and connect with the creative vision behind the handmade designs.</p>
+                        <p>Pearl's Yarniverse is a visually focused website that showcases a handmade crochet and yarn brand. It highlights unique, handcrafted yarn creations and crochet pieces, presenting them in a clean and creative layout that reflects the brand's artistic identity. The website serves as a digital portfolio and brand space, allowing visitors to explore the products, appreciate the craftsmanship, and connect with the creative vision behind the handmade designs.</p>
                         <div class="project-links">
                             <a href="https://pearl-s-yarniverse.vercel.app/" class="project-link live" target="_blank">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
@@ -1384,7 +1384,7 @@
                             
                         </div>
                         <h3>Hair and Nails Website</h3>
-                        <p>The hair and nails website is a static online platform designed to showcase beauty services and styles. It presents hair and nail offerings, completed work, and the brand’s aesthetic through a clean and organized layout, giving visitors a clear overview of services and visual inspiration while providing essential information in a simple, accessible format.</p>
+                        <p>The hair and nails website is a static online platform designed to showcase beauty services and styles. It presents hair and nail offerings, completed work, and the brand's aesthetic through a clean and organized layout, giving visitors a clear overview of services and visual inspiration while providing essential information in a simple, accessible format.</p>
                         <div class="project-links">
                             <a href="https://zee-hair-and-nails.vercel.app/" class="project-link live" target="_blank">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
@@ -1515,7 +1515,7 @@
                         </div>
                         
                         <div style="margin-top: 40px;">
-                            <button href="Download Dylan_Ndlovu_CV.pdf" class="glass-btn">
+                            <button id="download-cv-2" class="glass-btn">
                                 <i class="fas fa-download"></i> Download CV
                             </button>
                         </div>
@@ -1769,116 +1769,44 @@
         timelineItems.forEach(item => observer.observe(item));
 
         // ============================================
-        // 6. DOWNLOAD CV FUNCTIONALITY
+        // 6. DOWNLOAD CV FUNCTIONALITY - UPDATED FOR PDF
         // ============================================
         const downloadButtons = document.querySelectorAll('#download-cv, #download-cv-2');
         
-        // Create CV content from your data
-        const cvContent = `DYLAN NDLOVU
-========================
-FULL STACK WEB DEVELOPER
-
-CONTACT INFORMATION
--------------------
-Location: Johannesburg, South Africa
-Phone: +27 65 850 0818
-Email: Dylanmndlovu@gmail.com
-LinkedIn: https://www.linkedin.com/in/dylan4ndlovu/
-GitHub: Username: mandla4ndv
-
-PROFESSIONAL SUMMARY
---------------------
-Final-year Computer Science Diploma student with hands-on experience in administration and database support. Passionate about IT infrastructure, systems administration, and data management. Demonstrates strong time management, communication, and remote work proficiency. Actively pursuing a career in IT support and system administration.
-
-Currently working as a Website Developer Intern at Singularity Tech, designing and developing modern web applications with focus on UI/UX excellence.
-
-EDUCATION
----------
-Diploma in Computer Science
-Tshwane University of Technology – Polokwane
-Expected Graduation: 2026
-
-Matric Certificate (2021)
-Bracken High School
-
-WORK EXPERIENCE
----------------
-Website Developer (Internship)
-Singularity Tech – Polokwane | June 2025 – Present
-- Provide Website Designs
-- UI & UX Design
-- Web Development
-- Attend Hackathons for practical exposure
-
-Junior Administrator (Remote)
-Live Plan Holdings – Johannesburg | Mar 2024 – June 2025
-- Provided virtual receptionist duties, handled email and call communication
-- Managed digital files and supported document preparation
-- Coordinated and tracked tender submissions and budgeting
-- Participated in team meetings via Microsoft Teams and Zoom
-- Ensured compliance with data protection standards
-
-Warehouse Handler
-TNT Creative Solutions | Nov 2022 – Jan 2023
-- Supported general admin functions and tender coordination
-- Assembling of merchandise
-- Setting up product at events
-
-TECHNICAL SKILLS
-----------------
-Full Stack Development: JavaScript, HTML5, CSS3, React, Vue.js, Node.js, PHP, Kotlin
-Databases: SQL, Oracle DBMS
-Operating Systems: Windows OS, Linux CLI
-Networking: CCNA Certified
-Tools: Git, Microsoft Office Suite
-
-
-PROGRAMMING LANGUAGES
----------------------
-- JavaScript
-- Java
-- Python
-- HTML5
-- CSS3
-- PHP
-- React
-- Vue.js
-- Node.js
-- SQL
-- Kotlin
-
-CERTIFICATIONS
---------------
-- CCNA – Cisco Certified Network Associate (Completed Jan 2024)
-- HP LIFE – Presenting Data (Completed September 2025)
-- HP LIFE – Selling Online (Completed September 2025)
-- HP LIFE – IT for Business Success (Completed September 2025)
-- IBM – DATA SCIENCE 101 DS0101EN (Completed September 2025)
-
-ADDITIONAL INFORMATION
-----------------------
-- Code 08 Driver's License
-- Own Vehicle
-- South African Citizen
-- Available for relocation
-- Open to remote work`;
-
+        // Function to download PDF
+        function downloadPDF() {
+            // Create a blob with PDF content (this would be your actual PDF file)
+            // For demonstration, we'll create a simple text-based PDF structure
+            // In reality, you would link to an actual PDF file
+            
+            // Method 1: Link to existing PDF file (recommended)
+            // Ensure you have a file named "Dylan_Ndlovu_ATS_CV.pdf" in the same directory
+            const pdfUrl = 'Dylan_Ndlovu_ATS_CV.pdf';
+            
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = pdfUrl;
+            link.download = 'Dylan_Ndlovu_ATS_CV.pdf';
+            
+            // Append to body, click, and remove
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show notification
+            showNotification('CV downloaded successfully as PDF!');
+        }
+        
+        // Add event listeners to both download buttons
         downloadButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Create and trigger download
-                const blob = new Blob([cvContent], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'Dylan_Ndlovu_CV.txt';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                
-                // Show notification
-                showNotification('CV downloaded successfully!');
-            });
+            // Remove any existing click listeners to prevent conflicts
+            const newButton = button.cloneNode(true);
+            button.parentNode.replaceChild(newButton, button);
+            
+            // Add new click listener
+            if (newButton.id === 'download-cv' || newButton.id === 'download-cv-2') {
+                newButton.addEventListener('click', downloadPDF);
+            }
         });
 
         // ============================================
@@ -2040,6 +1968,12 @@ ADDITIONAL INFORMATION
                 if (window.innerWidth <= 768) {
                     document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
                 }
+            });
+            
+            // Initialize download buttons
+            const downloadButtons = document.querySelectorAll('#download-cv, #download-cv-2');
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', downloadPDF);
             });
         });
 
