@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dylan Ndlovu - Full Stack Web Developer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="icon" href="myLogo.png" type="image/jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -443,44 +444,123 @@
             transform: scale(1.05);
         }
 
-        /* Programming Languages with Logos */
-        .languages-grid {
+        /* Projects Section */
+        .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
             margin-top: 40px;
         }
 
-        .language-card {
+        .project-card {
             background: var(--glass);
             backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 30px 20px;
+            border-radius: 20px;
+            padding: 30px;
+            transition: var(--transition);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            transition: var(--transition);
-            text-align: center;
+            overflow: hidden;
         }
 
-        .language-card:hover {
-            transform: translateY(-10px) scale(1.05);
+        .project-card:hover {
+            transform: translateY(-10px);
             box-shadow: var(--shadow);
         }
 
-        .language-icon {
-            font-size: 3rem;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--glass-border);
         }
 
-        .language-card span {
-            font-weight: 600;
-            font-size: 1.1rem;
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-image::before {
+            content: 'Desktop View';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(15, 23, 42, 0.8);
+            color: var(--light);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tech-badge {
+            background: rgba(37, 99, 235, 0.2);
+            color: var(--secondary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .project-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: auto;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            background: rgba(37, 99, 235, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .project-link.live {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
         }
 
         /* Education & Experience - FIXED TIMELINE */
@@ -533,26 +613,8 @@
             z-index: 2;
         }
 
-        .timeline-content {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 30px;
-            transition: var(--transition);
-            min-height: 160px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .timeline-content:hover {
-            transform: translateX(20px);
-            box-shadow: var(--shadow);
-        }
-
         /* Logo spaces for timeline items and certification cards */
-        .timeline-logo {
+        .timeline-logo, .timeline-logo-img {
             position: absolute;
             left: 260px;
             top: 0;
@@ -571,6 +633,31 @@
         .timeline-logo i {
             font-size: 1.5rem;
             color: var(--secondary);
+        }
+
+        .timeline-logo-img img, .cert-logo-img img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .timeline-content {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: var(--transition);
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(20px);
+            box-shadow: var(--shadow);
         }
 
         /* Certifications */
@@ -596,7 +683,7 @@
             box-shadow: var(--shadow);
         }
 
-        .cert-logo {
+        .cert-logo, .cert-logo-img {
             width: 80px;
             height: 80px;
             background: var(--glass);
@@ -687,6 +774,46 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
+        /* Programming Languages */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .language-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .language-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: var(--shadow);
+        }
+
+        .language-icon {
+            font-size: 3rem;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .language-card span {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -738,8 +865,16 @@
                 width: 120px;
             }
             
-            .timeline-logo {
+            .timeline-logo, .timeline-logo-img {
                 left: 160px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .languages-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
             }
         }
 
@@ -797,8 +932,9 @@
             }
             
             .skills-grid,
-            .languages-grid,
-            .certifications-grid {
+            .projects-grid,
+            .certifications-grid,
+            .languages-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -832,7 +968,7 @@
                 min-height: auto;
             }
             
-            .timeline-logo {
+            .timeline-logo, .timeline-logo-img {
                 position: relative;
                 left: 0;
                 margin: 0 auto 15px;
@@ -858,6 +994,14 @@
             
             .profile-frame {
                 margin-top: 20px;
+            }
+            
+            .project-image {
+                height: 180px;
+            }
+            
+            .languages-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             }
         }
 
@@ -892,6 +1036,14 @@
             }
             
             .glass-btn {
+                justify-content: center;
+            }
+            
+            .project-links {
+                flex-direction: column;
+            }
+            
+            .project-link {
                 justify-content: center;
             }
             
@@ -930,7 +1082,8 @@
             <a href="#education">Education</a>
             <a href="#experience">Experience</a>
             <a href="#certifications">Certifications</a>
-            <a href="#languages">Languages</a>
+            <a href="#projects">Projects</a>
+            <a href="#programming-languages">Programming Languages</a>
             <a href="#contact">Contact</a>
         </div>
         <button class="mobile-menu-btn" id="mobile-menu-btn">
@@ -1049,8 +1202,8 @@
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-date">2022 - 2026</div>
-                        <div class="timeline-logo">
-                            <i class="fas fa-university"></i>
+                        <div class="timeline-logo-img">
+                            <img src="TUTLOGO.png" alt="Tshwane University of Technology">
                         </div>
                         <div class="timeline-content">
                             <h3>Diploma in Computer Science</h3>
@@ -1061,8 +1214,8 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">2021</div>
-                        <div class="timeline-logo">
-                            <i class="fas fa-graduation-cap"></i>
+                        <div class="timeline-logo-img">
+                            <img src="BHS.jpg" alt="Bracken High School">
                         </div>
                         <div class="timeline-content">
                             <h3>Matric Certificate</h3>
@@ -1081,8 +1234,8 @@
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-date">June 2025 - Present</div>
-                        <div class="timeline-logo">
-                            <i class="fas fa-laptop-code"></i>
+                        <div class="timeline-logo-img">
+                            <img src="TECH.png" alt="Singularity Tech">
                         </div>
                         <div class="timeline-content">
                             <h3>Website Developer (Internship)</h3>
@@ -1097,8 +1250,8 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">Mar 2024 - June 2025</div>
-                        <div class="timeline-logo">
-                            <i class="fas fa-briefcase"></i>
+                        <div class="timeline-logo-img">
+                            <img src="liveplan.png" alt="Live Plan Holdings">
                         </div>
                         <div class="timeline-content">
                             <h3>Junior Administrator (Remote)</h3>
@@ -1114,8 +1267,8 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">Nov 2022 - Jan 2023</div>
-                        <div class="timeline-logo">
-                            <i class="fas fa-warehouse"></i>
+                        <div class="timeline-logo-img">
+                            <img src="TNTLOGO.jpg" alt="TNT Creative Solutions">
                         </div>
                         <div class="timeline-content">
                             <h3>Warehouse Handler</h3>
@@ -1137,16 +1290,16 @@
                 <h2 class="section-title">Certifications</h2>
                 <div class="certifications-grid">
                     <div class="cert-card">
-                        <div class="cert-logo">
-                            <i class="fab fa-cisco"></i>
+                        <div class="cert-logo-img">
+                            <img src="CISCOLOGO.png" alt="Cisco">
                         </div>
                         <h3>CCNA – Cisco Certified Network Associate</h3>
                         <p><strong>Cisco</strong> | Completed January 2024</p>
                         <p style="margin-top: 10px; color: var(--secondary);">Networking fundamentals and infrastructure</p>
                     </div>
                     <div class="cert-card">
-                        <div class="cert-logo">
-                            <i class="fab fa-hp"></i>
+                        <div class="cert-logo-img">
+                            <img src="HPLOGO.jpg" alt="HP">
                         </div>
                         <h3>HP LIFE Certifications</h3>
                         <p><strong>HP</strong> | Completed September 2025</p>
@@ -1157,8 +1310,8 @@
                         </ul>
                     </div>
                     <div class="cert-card">
-                        <div class="cert-logo">
-                            <i class="fab fa-ibm"></i>
+                        <div class="cert-logo-img">
+                            <img src="IBMLOGO.png" alt="IBM">
                         </div>
                         <h3>IBM – Data Science 101</h3>
                         <p><strong>IBM</strong> | Completed September 2025</p>
@@ -1168,8 +1321,85 @@
             </div>
         </section>
 
-        <!-- Programming Languages with Logos -->
-        <section id="languages">
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="ai-kos-desktop.png" alt="ai-kos">
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">Firebase</span>
+                            <span class="tech-badge">Css</span>
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">REST API</span>
+                        </div>
+                        <h3>AI Recipe Generator</h3>
+                        <p>An AI recipe generator solves the problem of not knowing what to cook by turning available ingredients and preferences into practical meal ideas. It analyzes inputs such as ingredients, dietary needs, and time constraints to generate personalized recipes, reducing food waste, saving time, and making everyday cooking easier and more efficient.</p>
+                        <div class="project-links">
+                            <a href="https://ai-kos.vercel.app/" class="project-link live" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/mandla4ndv/AI-KOS" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="pearls-desktop.png" alt="Pearls-Yarniverse">
+                        </div>
+                        <div class="project-tech">
+                             <span class="tech-badge">React</span>
+                            <span class="tech-badge">Node.js</span>
+                             <span class="tech-badge">Css</span>
+                            <span class="tech-badge">HTML</span>
+                           
+                            
+                        </div>
+                        <h3>Handmade/Crochet Yarn Business</h3>
+                        <p>Pearl’s Yarniverse is a visually focused website that showcases a handmade crochet and yarn brand. It highlights unique, handcrafted yarn creations and crochet pieces, presenting them in a clean and creative layout that reflects the brand’s artistic identity. The website serves as a digital portfolio and brand space, allowing visitors to explore the products, appreciate the craftsmanship, and connect with the creative vision behind the handmade designs.</p>
+                        <div class="project-links">
+                            <a href="https://pearl-s-yarniverse.vercel.app/" class="project-link live" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/mandla4ndv/Pearl-s-Yarniverse" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="zee-desktop.png" alt="Hair and Nails Website">
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">CSS</span>
+                            
+                        </div>
+                        <h3>Hair and Nails Website</h3>
+                        <p>The hair and nails website is a static online platform designed to showcase beauty services and styles. It presents hair and nail offerings, completed work, and the brand’s aesthetic through a clean and organized layout, giving visitors a clear overview of services and visual inspiration while providing essential information in a simple, accessible format.</p>
+                        <div class="project-links">
+                            <a href="https://zee-hair-and-nails.vercel.app/" class="project-link live" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/mandla4ndv/ZeeHairAndNails" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programming Languages -->
+        <section id="programming-languages">
             <div class="container">
                 <h2 class="section-title">Programming Languages</h2>
                 <div class="languages-grid">
@@ -1233,35 +1463,11 @@
                         </div>
                         <span>SQL</span>
                     </div>
-                </div>
-                
-                <!-- Spoken Languages -->
-                <h2 class="section-title" style="margin-top: 80px;">Spoken Languages</h2>
-                <div class="skills-grid" style="margin-top: 40px;">
-                    <div class="skill-category">
-                        <h3><i class="fas fa-language"></i> Fluent</h3>
-                        <div class="skill-items">
-                            <div class="skill-item">English</div>
-                            <div class="skill-item">IsiZulu</div>
-                            <div class="skill-item">Siswati</div>
+                    <div class="language-card">
+                        <div class="language-icon" style="color: #7F52FF;">
+                            <i class="fab fa-kotlin"></i>
                         </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-language"></i> Basic</h3>
-                        <div class="skill-items">
-                            <div class="skill-item">Afrikaans</div>
-                            <div class="skill-item">SePedi</div>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-car"></i> Other Details</h3>
-                        <div class="skill-items">
-                            <div class="skill-item">Code 08 Driver's License</div>
-                            <div class="skill-item">Own Vehicle</div>
-                            <div class="skill-item">South African Citizen</div>
-                            <div class="skill-item">Available for relocation</div>
-                            <div class="skill-item">Open to remote work</div>
-                        </div>
+                        <span>Kotlin</span>
                     </div>
                 </div>
             </div>
@@ -1294,37 +1500,24 @@
                         </p>
                         
                         <div class="social-links">
-                            <a href="https://linkedin.com" class="social-link" target="_blank">
+                            <a href="https://www.linkedin.com/in/dylan4ndlovu/" class="social-link" target="_blank">
                                 <i class="fab fa-linkedin"></i>
                                 <span>LinkedIn</span>
                             </a>
-                            <a href="https://github.com" class="social-link" target="_blank">
+                            <a href="https://github.com/mandla4ndv" class="social-link" target="_blank">
                                 <i class="fab fa-github"></i>
                                 <span>GitHub</span>
                             </a>
-                            <a href="mailto:your-email@gmail.com" class="social-link">
+                            <a href="mailto:dylanmndlovu@gmail.com" class="social-link">
                                 <i class="fas fa-envelope"></i>
                                 <span>Email</span>
                             </a>
                         </div>
                         
                         <div style="margin-top: 40px;">
-                            <button id="download-cv-2" class="glass-btn">
+                            <button href="Download Dylan_Ndlovu_CV.pdf" class="glass-btn">
                                 <i class="fas fa-download"></i> Download CV
                             </button>
-                        </div>
-
-                        <div style="margin-top: 30px; padding: 20px; background: var(--glass); border-radius: 15px;">
-                            <h4 style="margin-bottom: 15px; color: var(--secondary);">References</h4>
-                            <p><strong>Angela Makala</strong><br>
-                            Live Plan Holdings<br>
-                            081 781 7052<br>
-                            angelasininimakala@gmail.com</p>
-                            
-                            <p style="margin-top: 15px;"><strong>Manny Pillay</strong><br>
-                            TNT Creative Solutions<br>
-                            061 581 5174<br>
-                            sales@tntcreative.co.za</p>
                         </div>
                     </div>
                 </div>
@@ -1333,7 +1526,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Dylan Ndlovu. All rights reserved.</p>
+        <p>&copy; 2025 Portfolio. All rights reserved by Dylan Ndlovu.</p>
         <p style="margin-top: 10px; opacity: 0.7;">Full Stack Web Developer | IT Professional</p>
     </footer>
 
@@ -1589,8 +1782,9 @@ CONTACT INFORMATION
 -------------------
 Location: Johannesburg, South Africa
 Phone: +27 65 850 0818
-Email: [Your Email]
-LinkedIn: [Your LinkedIn Profile]
+Email: Dylanmndlovu@gmail.com
+LinkedIn: https://www.linkedin.com/in/dylan4ndlovu/
+GitHub: Username: mandla4ndv
 
 PROFESSIONAL SUMMARY
 --------------------
@@ -1632,11 +1826,26 @@ TNT Creative Solutions | Nov 2022 – Jan 2023
 
 TECHNICAL SKILLS
 ----------------
-Full Stack Development: JavaScript, HTML5, CSS3, React, Vue.js, Node.js, PHP
+Full Stack Development: JavaScript, HTML5, CSS3, React, Vue.js, Node.js, PHP, Kotlin
 Databases: SQL, Oracle DBMS
 Operating Systems: Windows OS, Linux CLI
 Networking: CCNA Certified
 Tools: Git, Microsoft Office Suite
+
+
+PROGRAMMING LANGUAGES
+---------------------
+- JavaScript
+- Java
+- Python
+- HTML5
+- CSS3
+- PHP
+- React
+- Vue.js
+- Node.js
+- SQL
+- Kotlin
 
 CERTIFICATIONS
 --------------
@@ -1646,30 +1855,13 @@ CERTIFICATIONS
 - HP LIFE – IT for Business Success (Completed September 2025)
 - IBM – DATA SCIENCE 101 DS0101EN (Completed September 2025)
 
-LANGUAGES
----------
-Fluent: English, IsiZulu, Siswati
-Basic: Afrikaans, SePedi
-
 ADDITIONAL INFORMATION
 ----------------------
 - Code 08 Driver's License
 - Own Vehicle
 - South African Citizen
 - Available for relocation
-- Open to remote work
-
-REFERENCES
-----------
-Angela Makala
-Live Plan Holdings
-081 781 7052
-angelasininimakala@gmail.com
-
-Manny Pillay
-TNT Creative Solutions
-061 581 5174
-sales@tntcreative.co.za`;
+- Open to remote work`;
 
         downloadButtons.forEach(button => {
             button.addEventListener('click', () => {
